@@ -1,0 +1,184 @@
+[
+    {
+        "type": "derived",
+        "formula": "1*autoFuelOne + 10*autoFuelTen + 15*autoTower",
+        "id": "totalAutoPoints"
+    },
+    {
+        "type": "derived",
+        "formula": "1*teleopFuelOne + 10*teleopFuelTen - totalMinorFouls - totalMajorFouls",
+        "id": "totalTeleopPoints"
+    },
+    {
+        "type": "derived",
+        "formula": "multiselect(climbLevel, 'None', 0, 'Level 1', 10, 'Level 2', 20, 'Level 3', 30)",
+        "id": "totalEndgamePoints"
+    },
+    {
+        "type": "derived",
+        "formula": "totalAutoPoints + totalTeleopPoints + totalEndgamePoints",
+        "id": "contributedPoints"
+    },
+    {
+        "type": "derived",
+        "formula": "1*autoFuelOne + 10*autoFuelTen",
+        "id": "autoFuel"
+    },
+    {
+        "type": "derived",
+        "formula": "1*teleopFuelOne + 10*teleopFuelTen",
+        "id": "teleopFuel"
+    },
+    {
+        "type": "derived",
+        "formula": "passedNZ + passedOZ",
+        "id": "totalPassing"
+    },
+    {
+        "type": "derived",
+        "formula": "didDefenseNZ + didDefenseOZ",
+        "id": "totalDefense"
+    },
+    {
+        "type": "header",
+        "label": "Autonomous",
+        "id": "autonomouslbl"
+    },
+    {
+    "type": "image",
+    "image_id": "allianceZone"
+    },
+    {
+        "type": "multiselect",
+        "label": "Starting Position",
+        "options": ["Not There", "Outpost Side", "Middle", "Depot Side"],
+        "id": "startingPosition"
+    },
+    {
+        "type": "counter",
+        "label": "Fuel scored X 1",
+        "id": "autoFuelOne"
+    },
+    {
+        "type": "counter",
+        "label": "Fuel scored X 10",
+        "id": "autoFuelTen"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot climbed the Tower?",
+        "id": "autoTower"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot got Fuel from the Neutral Zone?",
+        "id": "autoNZ"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot got Fuel from their Depot?",
+        "id": "autoDepot"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot got Fuel from their Outpost?",
+        "id": "autoOutpost"
+    },
+    {
+        "type": "spacer"
+    },
+    {
+        "type": "header",
+        "label": "Teleoperated",
+        "id": "teleoplbl"
+    },
+    {
+        "type": "counter",
+        "label": "Fuel scored X 1",
+        "id": "teleopFuelOne"
+    },
+    {
+        "type": "counter",
+        "label": "Fuel scored X 10",
+        "id": "teleopFuelTen"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot passed fuel from the Neutral Zone?",
+        "id": "passedNZ"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot passed fuel from the Opponent's Zone?",
+        "id": "passedOZ"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot played defense in the Neutral Zone?",
+        "id": "didDefenseNZ"
+    },
+    {
+        "type": "checkbox",
+        "label": "Robot played defense in the Opponent's Zone?",
+        "id": "didDefenseOZ"
+    },
+    {
+        "type": "counter",
+        "label": "Total minor fouls",
+        "id": "totalMinorFouls"
+    },
+    {
+        "type": "counter",
+        "label": "Total major fouls",
+        "id": "totalMajorFouls"
+    },
+    {
+        "type": "spacer"
+    },
+    {
+        "type": "header",
+        "label": "Endgame",
+        "id": "endgameLbl"
+    },
+    {
+        "type": "slider",
+        "variant": "standard",
+        "label": "How much time was on the clock when they started climbing?",
+        "options": {"min": 0, "max": 30, "step": 5},
+        "id": "climbingStartTime"
+    },
+    {
+        "type": "multiselect",
+        "label": "Climb Level",
+        "options": ["None", "Level 1", "Level 2", "Level 3"],
+        "id": "climbLevel"
+    },
+    {
+        "type": "spacer"
+    },
+    {
+        "type": "header",
+        "label": "General",
+        "id": "generalLbl"
+    },
+    {
+        "type": "checkbox",
+        "label": "Died during the match (or never started)?",
+        "id": "diedDuringMatch"
+    },
+    {
+        "type": "checkbox",
+        "label": "Did they get a yellow card?",
+        "id": "didYellowCard"
+    },
+    {
+        "type": "checkbox",
+        "label": "Did they get a red card?",
+        "id": "didRedCard"
+    },
+    {
+        "type": "textblock",
+        "label": "Other comments and notes",
+        "id": "otherNotes"
+    }
+]
