@@ -7,7 +7,7 @@
       "PIThopperHeight",
       "EXTtbaAutoTowerPoints",
       "EXTtbaTotalTeleopPoints",
-      "EXTtbaEndgameTowerPoints"
+      "EXTtbaEndGameTowerPoints"
     ]
     },
     {
@@ -32,12 +32,12 @@
     },
     {
         "type": "derived",
-        "formula": "EXTtbaEndgameTowerPoints",
-        "id": "totalEndgamePoints"
+        "formula": "EXTtbaEndGameTowerPoints",
+        "id": "totalEndGamePoints"
     },
     {
         "type": "derived",
-        "formula": "totalAutoPoints + totalTeleopPoints + totalEndgamePoints",
+        "formula": "totalAutoPoints + totalTeleopPoints + totalEndGamePoints",
         "id": "contributedPoints"
     },
     {
