@@ -1,17 +1,38 @@
 [
     {
+    "type": "importdata",
+    "datafields": [
+      "PIThopperLength",
+      "PIThopperWidth",
+      "PIThopperHeight",
+      "EXTtbaAutoTowerPoints",
+      "EXTtbaTotalTeleopPoints",
+      "EXTtbaEndgameTowerPoints"
+    ]
+    },
+    {
         "type": "derived",
-        "formula": "1*autoFuelOne + 10*autoFuelTen + 15*autoTower",
+        "formula": "PIThopperLength * PIThopperWidth * PIThopperHeight",
+        "id": "estimatedVolume"
+    },
+    {
+        "type": "derived",
+        "formula": "if(estimatedVolume > 0, (estimatedVolume * 0.6) / 180, 15)",
+        "id": "estimatedBallCapacity"
+    },
+    {
+        "type": "derived",
+        "formula": "(autoPayloads * estimatedBallCapacity) + (autoHalfPayloads * estimatedBallCapacity * 0.5) + (autoQuarterPayloads * estimatedBallCapacity * 0.25) + 1*autoManualFuel + EXTtbaAutoTowerPoints",
         "id": "totalAutoPoints"
     },
     {
         "type": "derived",
-        "formula": "1*teleopFuelOne + 10*teleopFuelTen - totalMinorFouls - totalMajorFouls",
+        "formula": "(teleopPayloads * estimatedBallCapacity) + (teleopHalfPayloads * estimatedBallCapacity * 0.5) + (teleopQuarterPayloads * estimatedBallCapacity * 0.25) + 1*teleopManualFuel - totalMinorFouls - totalMajorFouls",
         "id": "totalTeleopPoints"
     },
     {
         "type": "derived",
-        "formula": "multiselect(climbLevel, 'None', 0, 'Level 1', 10, 'Level 2', 20, 'Level 3', 30)",
+        "formula": "EXTtbaEndgameTowerPoints",
         "id": "totalEndgamePoints"
     },
     {
@@ -21,12 +42,12 @@
     },
     {
         "type": "derived",
-        "formula": "1*autoFuelOne + 10*autoFuelTen",
+        "formula": "(autoPayloads * estimatedBallCapacity) + (autoHalfPayloads * estimatedBallCapacity * 0.5) + (autoQuarterPayloads * estimatedBallCapacity * 0.25) + 1*autoManualFuel",
         "id": "autoFuel"
     },
     {
         "type": "derived",
-        "formula": "1*teleopFuelOne + 10*teleopFuelTen",
+        "formula": "(teleopPayloads * estimatedBallCapacity) + (teleopHalfPayloads * estimatedBallCapacity * 0.5) + (teleopQuarterPayloads * estimatedBallCapacity * 0.25) + 1*teleopManualFuel",
         "id": "teleopFuel"
     },
     {
@@ -56,18 +77,23 @@
     },
     {
         "type": "counter",
-        "label": "Fuel scored X 1",
-        "id": "autoFuelOne"
+        "label": "Quarter Payloads scored",
+        "id": "autoQuarterPayloads"
     },
     {
         "type": "counter",
-        "label": "Fuel scored X 10",
-        "id": "autoFuelTen"
+        "label": "Half Payloads scored",
+        "id": "autoHalfPayloads"
     },
     {
-        "type": "checkbox",
-        "label": "Robot climbed the Tower?",
-        "id": "autoTower"
+        "type": "counter",
+        "label": "Payloads scored",
+        "id": "autoPayloads"
+    },
+    {
+        "type": "counter",
+        "label": "Manual Fuel adjustment",
+        "id": "autoManualFuel"
     },
     {
         "type": "checkbox",
@@ -94,13 +120,23 @@
     },
     {
         "type": "counter",
-        "label": "Fuel scored X 1",
-        "id": "teleopFuelOne"
+        "label": "Quarter Payloads scored",
+        "id": "teleopQuarterPayloads"
     },
     {
         "type": "counter",
-        "label": "Fuel scored X 10",
-        "id": "teleopFuelTen"
+        "label": "Half Payloads scored",
+        "id": "teleopHalfPayloads"
+    },
+    {
+        "type": "counter",
+        "label": "Payloads scored",
+        "id": "teleopPayloads"
+    },
+    {
+        "type": "counter",
+        "label": "Manual Fuel adjustment",
+        "id": "teleopManualFuel"
     },
     {
         "type": "checkbox",
@@ -146,12 +182,6 @@
         "label": "How much time was on the clock when they started climbing?",
         "options": {"min": 0, "max": 30, "step": 5},
         "id": "climbingStartTime"
-    },
-    {
-        "type": "multiselect",
-        "label": "Climb Level",
-        "options": ["None", "Level 1", "Level 2", "Level 3"],
-        "id": "climbLevel"
     },
     {
         "type": "spacer"
